@@ -1,0 +1,12 @@
+<div class="container">
+    <ul class="nav nav-dark">
+        <li class="nav-item">
+        <a class="nav-link active" href="#">Filters? Coming Soon !!</a>
+        </li>
+    </ul>
+    </div>
+    <div class="container">
+    <div class="row">
+        <app-movie-card  *ngFor="let movie of movies; let i = index" movie_name="{{movie.title}}" movie="{{movie.id}}">{{movie|json}}</app-movie-card>
+    </div>
+</div>
