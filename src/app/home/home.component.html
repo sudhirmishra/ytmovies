@@ -1,12 +1,19 @@
-<div class="container">
-    <ul class="nav nav-dark">
+<div class="col-sm-12">
+    <ul class="nav nav-tabs justify-content-center">
         <li class="nav-item">
-        <a class="nav-link active" href="#">Filters? Coming Soon !!</a>
+            <a class="nav-link" [routerLinkActive]="['active']"
+                [routerLink]="['/']">All</a>
+        </li>
+        <li *ngFor="let cat of categories" class="nav-item">
+            <a class="nav-link" [routerLinkActive]="['active']"
+                [routerLink]="['/category/', cat]">{{cat}}</a>
         </li>
     </ul>
-    </div>
-    <div class="container">
+</div>
+<hr>
+<div class="col-sm-12">
     <div class="row">
-        <app-movie-card  *ngFor="let movie of movies; let i = index" movie_name="{{movie.title}}" movie="{{movie.id}}">{{movie|json}}</app-movie-card>
+
+        <app-movie-card *ngFor="let movie of movies; let i = index" movie_name="{{movie.title}}" movie="{{movie.id}}">{{movie|json}}</app-movie-card>
     </div>
 </div>

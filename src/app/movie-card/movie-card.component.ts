@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth'
+import { auth } from 'firebase/app';
 
 @Component({
   selector: 'app-movie-card',
@@ -6,8 +8,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./movie-card.component.css']
 })
 export class MovieCardComponent implements OnInit {
-
-  constructor() { }
   
   @Input()
   movie:string;
@@ -15,7 +15,22 @@ export class MovieCardComponent implements OnInit {
   @Input()
   movie_name:string
 
-  ngOnInit(): void {
+  @Input()
+  show_url:boolean;
+
+  constructor(public auth: AngularFireAuth){
+    console.log(typeof this.show_url)
   }
 
+  ngOnInit(): void {
+    console.log(typeof this.show_url)
+  }
+
+  watch(id:string) {
+    window.open("https://youtube.com/watch?v="+id, '_blank');
+  }
+
+  login(){
+    this.auth.signInWithRedirect(new auth.GoogleAuthProvider())
+  }
 }

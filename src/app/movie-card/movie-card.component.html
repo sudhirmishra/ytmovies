@@ -1,11 +1,15 @@
-<div class="col-md-4">
-  <div class="card" style="width: 25rem;">
-    <a target="_blank" href="https://youtube.com/watch?v={{movie}}">
-      <img src="https://i.ytimg.com/vi/{{movie}}/maxresdefault.jpg" class="card-img-top" alt="...">
+<div class="col-sm-4">
+  <div class="card" style="width: 20rem;">
+    <a (click)="watch(movie)" >
+      <img src="https://i.ytimg.com/vi/{{movie}}/maxresdefault.jpg" class="img-fluid" alt="...">
     </a>
     <div class="card-body">
-      <a href="https://youtube.com/watch?v={{movie}}" target="_blank" class="btn btn-primary">
-        Watch {{movie_name}} on YouTube</a>
+      <a *ngIf="auth.user | async as user; else showNoRedirect" (click)="watch(movie)" class="btn btn-primary">
+        Watch {{movie_name}} on YouTube
+      </a>
+      <ng-template #showNoRedirect>
+        <a (click)="login()" class="btn btn-primary" >Login to Watch {{movie_name}} on YouTube</a>
+      </ng-template>
     </div>
   </div>
 </div>
